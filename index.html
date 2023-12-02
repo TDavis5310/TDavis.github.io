@@ -13,7 +13,7 @@
             overflow: hidden; /* Hide horizontal scrollbars */
         }
 
-        /* New styles for enhanced appearance and background slideshow */
+        /* New styles for enhanced appearance */
         .slideshow-container {
             position: fixed;
             top: 0;
@@ -31,25 +31,8 @@
             height: 100%;
             background-size: cover;
             background-position: center;
-            opacity: 0;
-            animation: fade 10s infinite;
+            display: none; /* Hide all images initially */
         }
-
-        @keyframes fade {
-        0% {
-            opacity: 0;
-        }
-        20% {
-            opacity: 1;
-        }
-        80% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
-
 
         .container {
             max-width: 600px;
@@ -98,7 +81,8 @@
     <div class="slideshow-container">
         <div class="background-image" style="background-image: url('image1.png');"></div>
         <div class="background-image" style="background-image: url('image2.png');"></div>
-        <!-- Replace 'image1.jpg', 'image2.jpg', etc., with your uploaded image filenames -->
+        <div class="background-image" style="background-image: url('image3.png');"></div>
+        <!-- Replace 'image1.png', 'image2.png', etc., with your uploaded image filenames -->
     </div>
 
     <!-- Movie selection area -->
@@ -115,11 +99,26 @@
         </form>
     </div>
 
-    <!-- You'll add JavaScript to handle form submission -->
     <script>
-        // JavaScript code for handling form submission will go here
+        // JavaScript code to cycle through background images
+        const images = document.querySelectorAll('.background-image');
+        let currentImageIndex = 0;
+
+        function showNextImage() {
+            images.forEach(image => {
+                image.style.display = 'none';
+            });
+
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            images[currentImageIndex].style.display = 'block';
+
+            setTimeout(showNextImage, 5000); // Change image every 5 seconds (5000 milliseconds)
+        }
+
+        showNextImage(); // Start the slideshow
     </script>
 </body>
 
 </html>
+
 

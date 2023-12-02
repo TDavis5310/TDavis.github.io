@@ -13,7 +13,7 @@
             overflow: hidden; /* Hide horizontal scrollbars */
         }
 
-        /* New styles for enhanced appearance */
+        /* New styles for enhanced appearance and background slideshow */
         .slideshow-container {
             position: fixed;
             top: 0;
@@ -32,6 +32,7 @@
             background-size: cover;
             background-position: center;
             display: none; /* Hide all images initially */
+            animation: fadeAnimation 5s linear infinite; /* Change the animation duration as needed */
         }
 
         .container {
@@ -72,6 +73,15 @@
 
         button:hover {
             background: #0056b3;
+        }
+
+        @keyframes fadeAnimation {
+            0%, 100% {
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -120,5 +130,4 @@
 </body>
 
 </html>
-
 

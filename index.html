@@ -12,6 +12,7 @@
             padding: 20px;
         }
 
+        /* New styles for enhanced appearance and background slideshow */
         .container {
             max-width: 600px;
             margin: 0 auto;
@@ -50,51 +51,61 @@
             background: #0056b3;
         }
 
-        /* New styles for enhanced appearance */
-
-        /* Set a background image */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: url('background-image.png') center/cover no-repeat, rgba(0, 0, 0, 0.7);
-            color: #fff; /* Set text color to white for better readability */
+        /* Background slideshow */
+        .slideshow-container {
+            position: relative;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
         }
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(0, 0, 0, 0.7); /* Add a semi-transparent background */
-            padding: 20px;
-            border-radius: 8px;
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            animation: fade 10s infinite; /* Change the duration as needed */
         }
 
-        form {
-            /* Update form styling */
-            background: rgba(255, 255, 255, 0.9); /* Make the form background slightly transparent */
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        /* Update button style */
-        button {
-            padding: 10px 20px; /* Increase padding for better button appearance */
+        @keyframes fade {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            75% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Submit Your Movie Suggestion</h1>
-        <form id="movieForm">
-            <label for="movieTitle">Movie Title:</label>
-            <input type="text" id="movieTitle" placeholder="Enter the movie title" required>
+    <div class="slideshow-container">
+        <!-- Include multiple background images within divs with the 'background-image' class -->
+        <div class="background-image" style="background-image: url('image1.jpg');"></div>
+        <div class="background-image" style="background-image: url('image2.jpg');"></div>
+        <div class="background-image" style="background-image: url('image3.jpg');"></div>
+        <!-- Add more divs with different image URLs as needed -->
+        
+        <div class="container">
+            <h1>Submit Your Movie Suggestion</h1>
+            <form id="movieForm">
+                <label for="movieTitle">Movie Title:</label>
+                <input type="text" id="movieTitle" placeholder="Enter the movie title" required>
 
-            <label for="movieDescription">Description:</label>
-            <textarea id="movieDescription" placeholder="Enter a brief description"></textarea>
+                <label for="movieDescription">Description:</label>
+                <textarea id="movieDescription" placeholder="Enter a brief description"></textarea>
 
-            <button type="submit">Submit</button>
-        </form>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </div>
 
     <!-- You'll add JavaScript to handle form submission -->

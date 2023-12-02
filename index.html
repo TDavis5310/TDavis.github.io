@@ -117,30 +117,30 @@
     <script>
         // JavaScript code for submitting movie suggestion
         document.getElementById('movieForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const movieTitle = document.getElementById('movieTitle').value;
-    const movieDescription = document.getElementById('movieDescription').value;
-
-    fetch('http://localhost:3000/movies/submitMovie', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            movieTitle: movieTitle,
-            movieDescription: movieDescription,
-        }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Optionally handle the response from the server
-        console.log('Server response:', data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-});
+            event.preventDefault();
+        
+            const movieTitle = document.getElementById('movieTitle').value;
+            const movieDescription = document.getElementById('movieDescription').value;
+        
+            fetch('http://localhost:27107/movies/submitMovie', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    movieTitle: movieTitle,
+                    movieDescription: movieDescription,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Optionally handle the response from the server
+                console.log('Server response:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
 
 
         

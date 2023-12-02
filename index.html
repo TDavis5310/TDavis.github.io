@@ -11,6 +11,8 @@
             margin: 0;
             padding: 0;
             overflow: hidden; /* Hide horizontal scrollbars */
+            background-color: black; /* Set initial background color to black */
+            color: white; /* Set text color to white */
         }
 
         /* New styles for enhanced appearance and background slideshow */
@@ -32,6 +34,7 @@
             background-size: cover;
             background-position: center;
             display: none; /* Hide all images initially */
+            opacity: 0;
             animation: fadeAnimation 5s linear infinite; /* Change the animation duration as needed */
         }
 
@@ -78,9 +81,11 @@
         @keyframes fadeAnimation {
             0%, 100% {
                 opacity: 0;
+                background-color: black; /* Fade to black */
             }
             10%, 90% {
                 opacity: 1;
+                background-color: transparent; /* Transition to the next image */
             }
         }
     </style>

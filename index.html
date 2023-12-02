@@ -9,53 +9,18 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            overflow: hidden; /* Hide horizontal scrollbars */
         }
 
         /* New styles for enhanced appearance and background slideshow */
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        form {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        label,
-        input,
-        button {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-
-        button {
-            padding: 8px;
-            border-radius: 4px;
-            border: none;
-            background: #007bff;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #0056b3;
-        }
-
-        /* Background slideshow */
         .slideshow-container {
-            position: relative;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place behind other content */
         }
 
         .background-image {
@@ -66,46 +31,87 @@
             height: 100%;
             background-size: cover;
             background-position: center;
-            animation: fade 10s infinite; /* Change the duration as needed */
+            opacity: 0;
+            animation: fade 10s infinite;
         }
 
         @keyframes fade {
             0% {
                 opacity: 0;
             }
-            25% {
+            10% {
                 opacity: 1;
             }
-            75% {
+            90% {
                 opacity: 1;
             }
             100% {
                 opacity: 0;
             }
         }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+        }
+
+        form {
+            /* Update form styling */
+            padding: 20px;
+        }
+
+        label,
+        input,
+        button {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px); /* Adjusted width to consider padding */
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 4px;
+            border: none;
+            background: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Background slideshow -->
     <div class="slideshow-container">
-        <!-- Include multiple background images within divs with the 'background-image' class -->
-        <div class="background-image" style="background-image: url('image1.png');"></div>
-        <div class="background-image" style="background-image: url('image2.png');"></div>
-        <div class="background-image" style="background-image: url('image3.png');"></div>
-        <!-- Add more divs with different image URLs as needed -->
-        
-        <div class="container">
-            <h1>Submit Your Movie Suggestion</h1>
-            <form id="movieForm">
-                <label for="movieTitle">Movie Title:</label>
-                <input type="text" id="movieTitle" placeholder="Enter the movie title" required>
+        <div class="background-image" style="background-image: url('image1.jpg');"></div>
+        <div class="background-image" style="background-image: url('image2.jpg');"></div>
+        <!-- Replace 'image1.jpg', 'image2.jpg', etc., with your uploaded image filenames -->
+    </div>
 
-                <label for="movieDescription">Description:</label>
-                <textarea id="movieDescription" placeholder="Enter a brief description"></textarea>
+    <!-- Movie selection area -->
+    <div class="container">
+        <h1>Submit Your Movie Suggestion</h1>
+        <form id="movieForm">
+            <label for="movieTitle">Movie Title:</label>
+            <input type="text" id="movieTitle" placeholder="Enter the movie title" required>
 
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+            <label for="movieDescription">Description:</label>
+            <textarea id="movieDescription" placeholder="Enter a brief description"></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
     </div>
 
     <!-- You'll add JavaScript to handle form submission -->
@@ -115,3 +121,4 @@
 </body>
 
 </html>
+

@@ -115,6 +115,36 @@
     </div>
 
     <script>
+        // JavaScript code for submitting movie suggestion
+        document.getElementById('movieForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission behavior
+            
+            const movieTitle = document.getElementById('movieTitle').value;
+            const movieDescription = document.getElementById('movieDescription').value;
+            
+            // Send POST request to the server
+            fetch('http://localhost:3000/movies/submitMovie', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    movieTitle: movieTitle,
+                    movieDescription: movieDescription,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle response from the server (if needed)
+                console.log('Server response:', data);
+            })
+            .catch(error => {
+                // Handle error (if any)
+                console.error('Error:', error);
+            });
+        });
+
+        
         // JavaScript code to cycle through background images
         const images = document.querySelectorAll('.background-image');
         let currentImageIndex = 0;

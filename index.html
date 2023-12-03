@@ -139,11 +139,36 @@
 
         <button id="loginButton" type="submit">Login</button> <!-- Added ID here -->
     </form>
+
+    <!-- Box to Display Selected Movie -->
+    <div id="selectedMovieBox" style="display: none;">
+        <h2 id="movieTitle"></h2>
+        <p id="movieDescription"></p>
+        <!-- Add more details as needed -->
 </div>
 
 
 <!-- JavaScript -->
 <script>
+    // Fetch the data of the selected movie from the server
+        fetch('http://localhost:3000/random-movie') // Replace with your server URL
+            .then(response => response.json())
+            .then(movieData => {
+                // Once the movie data is received, update the HTML content
+                const selectedMovieBox = document.getElementById('selectedMovieBox');
+                const movieTitle = document.getElementById('movieTitle');
+                const movieDescription = document.getElementById('movieDescription');
+
+                // Update HTML content with movie details
+                movieTitle.textContent = movieData.title;
+                movieDescription.textContent = movieData.description;
+
+                // Show the box containing the selected movie
+                selectedMovieBox.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error fetching movie:', error);
+            });
     // JavaScript code for submitting movie suggestion
     document.getElementById('movieForm').addEventListener('submit', function (event) {
         event.preventDefault();

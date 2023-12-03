@@ -141,34 +141,17 @@
     </form>
 
     <!-- Box to Display Selected Movie -->
-    <div id="selectedMovieBox" style="display: none;">
-        <h2 id="movieTitle"></h2>
-        <p id="movieDescription"></p>
-        <!-- Add more details as needed -->
+    <div class="container" id="selectedMovieContainer" style="display: none;">
+        <h1>Selected Movie</h1>
+        <div>
+            <h2 id="selectedMovieTitle"></h2>
+            <p id="selectedMovieDescription"></p>
+        </div>
 </div>
 
 
 <!-- JavaScript -->
 <script>
-    // Fetch the data of the selected movie from the server
-        fetch('http://localhost:3000/random-movie') // Replace with your server URL
-            .then(response => response.json())
-            .then(movieData => {
-                // Once the movie data is received, update the HTML content
-                const selectedMovieBox = document.getElementById('selectedMovieBox');
-                const movieTitle = document.getElementById('movieTitle');
-                const movieDescription = document.getElementById('movieDescription');
-
-                // Update HTML content with movie details
-                movieTitle.textContent = movieData.title;
-                movieDescription.textContent = movieData.description;
-
-                // Show the box containing the selected movie
-                selectedMovieBox.style.display = 'block';
-            })
-            .catch(error => {
-                console.error('Error fetching movie:', error);
-            });
     // JavaScript code for submitting movie suggestion
     document.getElementById('movieForm').addEventListener('submit', function (event) {
         event.preventDefault();
@@ -227,6 +210,24 @@
     // Event listeners for showing forms
     document.getElementById('registerButton').addEventListener('click', showRegistration);
     document.getElementById('loginButton').addEventListener('click', showLogin);
+
+    // Function to fetch and display the selected movie
+        fetch('http://localhost:3000/random-movie') // Replace with your server's URL
+            .then(response => response.json())
+            .then(movieData => {
+                const selectedMovieTitle = document.getElementById('selectedMovieTitle');
+                const selectedMovieDescription = document.getElementById('selectedMovieDescription');
+
+                // Update the content with the selected movie details
+                selectedMovieTitle.textContent = 'Title: ' + movieData.title;
+                selectedMovieDescription.textContent = 'Description: ' + movieData.description;
+
+                // Show the selected movie container
+                document.getElementById('selectedMovieContainer').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error fetching movie:', error);
+            });
 </script>
 </body>
 

@@ -143,24 +143,43 @@
                 console.error('Error fetching movie:', error);
             });
 
-        // JavaScript code to cycle through background images
-        const images = document.querySelectorAll('.background-image');
-        let currentImageIndex = 0;
+        // JavaScript code to handle form submission
+        document.getElementById('movieForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-        function showNextImage() {
-            images.forEach(image => {
-                image.style.display = 'none';
+            const movieTitle = document.getElementById('movieTitle').value;
+            const movieDescription = document.getElementById('movieDescription').value;
+
+            // Create an object with the movie data
+            const movieData = {
+                title: movieTitle,
+                description: movieDescription
+            };
+
+            // Send the movie data to the server via a POST request
+            fetch('http://localhost:3000/movies', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(movieData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Optionally handle the response from the server
+                console.log('Server response:', data);
+                // Clear the form fields if needed
+                document.getElementById('movieTitle').value = '';
+                document.getElementById('movieDescription').value = '';
+            })
+            .catch(error => {
+                console.error('Error:', error);
             });
+        });
 
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            images[currentImageIndex].style.display = 'block';
+        // JavaScript code to cycle through background images
+        const images
 
-            setTimeout(showNextImage, 5000); // Change image every 5 seconds (5000 milliseconds)
-        }
-
-        showNextImage(); // Start the slideshow
-    </script>
-</body>
 
 </html>
 

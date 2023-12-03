@@ -112,16 +112,28 @@
 
             <button type="submit">Submit</button>
         </form>
+
+        <!-- Google OAuth Login Button -->
+        <div id="googleButton" class="g-signin2" data-onsuccess="onSignIn"></div>
     </div>
 
     <script>
+        // JavaScript code for Google OAuth login
+        function onSignIn(googleUser) {
+            const idToken = googleUser.getAuthResponse().id_token;
+            // Send this token to your server to authenticate the user
+            // Implement your logic here to handle the authentication
+            console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+            console.log('ID Token: ' + idToken);
+        }
+
         // JavaScript code for submitting movie suggestion
-        document.getElementById('movieForm').addEventListener('submit', function(event) {
+        document.getElementById('movieForm').addEventListener('submit', function (event) {
             event.preventDefault();
-        
+
             const movieTitle = document.getElementById('movieTitle').value;
             const movieDescription = document.getElementById('movieDescription').value;
-        
+
             fetch('http://localhost:3000/movies/submitMovie', {
                 method: 'POST',
                 headers: {
@@ -132,18 +144,18 @@
                     movieDescription: movieDescription,
                 }),
             })
-            .then(response => response.json())
-            .then(data => {
-                // Optionally handle the response from the server
-                console.log('Server response:', data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    // Optionally handle the response from the server
+                    console.log('Server response:', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         });
 
 
-        
+
         // JavaScript code to cycle through background images
         const images = document.querySelectorAll('.background-image');
         let currentImageIndex = 0;
@@ -161,6 +173,7 @@
 
         showNextImage(); // Start the slideshow
     </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 
 </html>

@@ -114,20 +114,20 @@
         </form>
 
         <!-- Registration form -->
-    <div class="container" id="registerContainer" style="display: none;">
-        <h1>Register</h1>
-        <form id="registerForm">
-            <label for="registerUsername">Username:</label>
-            <input type="text" id="registerUsername" placeholder="Enter username" required>
+<div class="container" id="registerContainer" style="display: none;">
+    <h1>Register</h1>
+    <form id="registerForm">
+        <label for="registerUsername">Username:</label>
+        <input type="text" id="registerUsername" placeholder="Enter username" required>
 
-            <label for="registerPassword">Password:</label>
-            <input type="password" id="registerPassword" placeholder="Enter password" required>
+        <label for="registerPassword">Password:</label>
+        <input type="password" id="registerPassword" placeholder="Enter password" required>
 
-            <button type="submit">Register</button>
-        </form>
-    </div>
+        <button id="registerButton" type="submit">Register</button> <!-- Added ID here -->
+    </form>
+</div>
 
-    <!-- Login form -->
+<!-- Login form -->
 <div class="container" id="loginContainer" style="display: none;">
     <h1>Login</h1>
     <form id="loginForm">
@@ -137,9 +137,10 @@
         <label for="loginPassword">Password:</label>
         <input type="password" id="loginPassword" placeholder="Enter password" required>
 
-        <button type="submit">Login</button>
+        <button id="loginButton" type="submit">Login</button> <!-- Added ID here -->
     </form>
 </div>
+
 
 <!-- JavaScript -->
 <script>

@@ -94,10 +94,7 @@
 <body>
     <!-- Background slideshow -->
     <div class="slideshow-container">
-        <div class="background-image" style="background-image: url('image1.png');"></div>
-        <div class="background-image" style="background-image: url('image2.png');"></div>
-        <div class="background-image" style="background-image: url('image3.png');"></div>
-        <!-- Replace 'image1.png', 'image2.png', etc., with your uploaded image filenames -->
+        <!-- Updated: Empty divs for image population -->
     </div>
 
     <!-- Movie selection area -->
@@ -125,6 +122,38 @@
 
     <!-- JavaScript -->
     <script>
+        const totalImages = 50; // Total number of images
+
+        function shuffleImages() {
+            const imagesContainer = document.querySelector('.slideshow-container');
+            for (let i = 1; i <= totalImages; i++) {
+                const image = document.createElement('div');
+                image.classList.add('background-image');
+                image.style.backgroundImage = `url('image{i}.png')`; // Replace with your image paths
+                imagesContainer.appendChild(image);
+            }
+            showSlides();
+        }
+
+        let slideIndex = 0;
+
+        function showSlides() {
+            const slides = document.querySelectorAll('.background-image');
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = 'none';
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            slides[slideIndex - 1].style.display = 'block';
+            setTimeout(showSlides, 5000); // Change image every 5 seconds (5000ms)
+        }
+
+        window.onload = shuffleImages;
+
+        // Remaining JavaScript code for fetching movie data and handling form submission...
+        // (Keep your existing code for fetching movie data, handling form submission, etc.)
         // Function to fetch and display the selected movie
         fetch('http://localhost:3000/random-movie') // Replace with your server's URL
             .then(response => response.json())
@@ -176,23 +205,6 @@
                 console.error('Error:', error);
             });
         });
-
-        // JavaScript code to cycle through background images
-        const images = document.querySelectorAll('.background-image');
-        let currentImageIndex = 0;
-
-        function showNextImage() {
-            images.forEach(image => {
-                image.style.display = 'none';
-            });
-
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            images[currentImageIndex].style.display = 'block';
-
-            setTimeout(showNextImage, 5000); // Change image every 5 seconds (5000 milliseconds)
-        }
-
-        showNextImage(); // Start the slideshow
     </script>
 </body>
 

@@ -113,71 +113,95 @@
             <button type="submit">Submit</button>
         </form>
 
-        <!-- Google OAuth Login Button -->
-        <div id="googleButton" class="g-signin2" data-onsuccess="onSignIn"></div>
+        <!-- Registration form -->
+    <div class="container" id="registerContainer" style="display: none;">
+        <h1>Register</h1>
+        <form id="registerForm">
+            <label for="registerUsername">Username:</label>
+            <input type="text" id="registerUsername" placeholder="Enter username" required>
 
+            <label for="registerPassword">Password:</label>
+            <input type="password" id="registerPassword" placeholder="Enter password" required>
+
+            <button type="submit">Register</button>
+        </form>
     </div>
 
-    <!-- Include Google API with the client ID -->
-    <script src="https://apis.google.com/js/platform.js?client_id=853547418808-7sdd82hsm2kjkcadcnbksqksqvs21nf7.apps.googleusercontent.com" async defer></script>
-    <script>
-        // JavaScript code for Google OAuth login
-        function onSignIn(googleUser) {
-            const idToken = googleUser.getAuthResponse().id_token;
-            // Send this token to your server to authenticate the user
-            // Implement your logic here to handle the authentication
-            console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-            console.log('ID Token: ' + idToken);
-        }
+    <!-- Login form -->
+<div class="container" id="loginContainer" style="display: none;">
+    <h1>Login</h1>
+    <form id="loginForm">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" placeholder="Enter username" required>
 
-        // JavaScript code for submitting movie suggestion
-        document.getElementById('movieForm').addEventListener('submit', function (event) {
-            event.preventDefault();
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" placeholder="Enter password" required>
 
-            const movieTitle = document.getElementById('movieTitle').value;
-            const movieDescription = document.getElementById('movieDescription').value;
+        <button type="submit">Login</button>
+    </form>
+</div>
 
-            fetch('http://localhost:3000/movies/submitMovie', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    movieTitle: movieTitle,
-                    movieDescription: movieDescription,
-                }),
+<!-- JavaScript -->
+<script>
+    // JavaScript code for submitting movie suggestion
+    document.getElementById('movieForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const movieTitle = document.getElementById('movieTitle').value;
+        const movieDescription = document.getElementById('movieDescription').value;
+
+        fetch('http://localhost:3000/movies/submitMovie', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                movieTitle: movieTitle,
+                movieDescription: movieDescription,
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Optionally handle the response from the server
+                console.log('Server response:', data);
             })
-                .then(response => response.json())
-                .then(data => {
-                    // Optionally handle the response from the server
-                    console.log('Server response:', data);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+
+    // JavaScript code to cycle through background images
+    const images = document.querySelectorAll('.background-image');
+    let currentImageIndex = 0;
+
+    function showNextImage() {
+        images.forEach(image => {
+            image.style.display = 'none';
         });
 
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        images[currentImageIndex].style.display = 'block';
 
+        setTimeout(showNextImage, 5000); // Change image every 5 seconds (5000 milliseconds)
+    }
 
-        // JavaScript code to cycle through background images
-        const images = document.querySelectorAll('.background-image');
-        let currentImageIndex = 0;
+    showNextImage(); // Start the slideshow
 
-        function showNextImage() {
-            images.forEach(image => {
-                image.style.display = 'none';
-            });
+    // Function to show/hide registration and login forms
+    const showRegistration = () => {
+        document.getElementById('registerContainer').style.display = 'block';
+        document.getElementById('loginContainer').style.display = 'none';
+    };
 
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            images[currentImageIndex].style.display = 'block';
+    const showLogin = () => {
+        document.getElementById('loginContainer').style.display = 'block';
+        document.getElementById('registerContainer').style.display = 'none';
+    };
 
-            setTimeout(showNextImage, 5000); // Change image every 5 seconds (5000 milliseconds)
-        }
-
-        showNextImage(); // Start the slideshow
-    </script>
-
+    // Event listeners for showing forms
+    document.getElementById('registerButton').addEventListener('click', showRegistration);
+    document.getElementById('loginButton').addEventListener('click', showLogin);
+</script>
 </body>
 
 </html>
-

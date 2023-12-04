@@ -122,14 +122,14 @@
 
     <!-- JavaScript -->
     <script>
-        const totalImages = 50; // Total number of images
+        const totalImages = 15; // Total number of images
 
         function shuffleImages() {
             const imagesContainer = document.querySelector('.slideshow-container');
             for (let i = 1; i <= totalImages; i++) {
                 const image = document.createElement('div');
                 image.classList.add('background-image');
-                image.style.backgroundImage = `url('image{i}.png')`; // Replace with your image paths
+                image.style.backgroundImage = `url('image ({i}).png')`; // Replace with your image paths
                 imagesContainer.appendChild(image);
             }
             showSlides();

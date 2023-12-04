@@ -129,7 +129,7 @@
             for (let i = 1; i <= totalImages; i++) {
                 const image = document.createElement('div');
                 image.classList.add('background-image');
-                image.style.backgroundImage = `url('image ({i}).png')`; // Replace with your image paths
+                image.style.backgroundImage = `url('image${i}.png')`;
                 imagesContainer.appendChild(image);
             }
             showSlides();

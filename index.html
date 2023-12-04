@@ -174,41 +174,41 @@
 
         // JavaScript code to handle form submission
         document.getElementById('movieForm').addEventListener('submit', handleSubmit);
-        document.getElementById('movieForm').addEventListener('touchend', handleSubmit);
-    
-        function handleSubmit(event) {
-            event.preventDefault();
-    
-            const movieTitle = document.getElementById('movieTitle').value;
-            const movieDescription = document.getElementById('movieDescription').value;
-    
-            // Create an object with the movie data
-            const movieData = {
-                title: movieTitle,
-                description: movieDescription
-            };
-    
-            // Send the movie data to the server via a POST request
-            fetch('http://localhost:3000/movies', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(movieData),
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Optionally handle the response from the server
-                console.log('Server response:', data);
-                // Clear the form fields if needed
-                document.getElementById('movieTitle').value = '';
-                document.getElementById('movieDescription').value = '';
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-    </script>
+    document.getElementById('movieForm').addEventListener('touchend', handleSubmit);
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        const movieTitle = document.getElementById('movieTitle').value;
+        const movieDescription = document.getElementById('movieDescription').value;
+
+        // Create an object with the movie data
+        const movieData = {
+            title: movieTitle,
+            description: movieDescription
+        };
+
+        // Send the movie data to the server via a POST request
+        fetch('http://localhost:3000/movies', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(movieData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Optionally handle the response from the server
+            console.log('Server response:', data);
+            // Clear the form fields if needed
+            document.getElementById('movieTitle').value = '';
+            document.getElementById('movieDescription').value = '';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>
 </body>
 
 </html>

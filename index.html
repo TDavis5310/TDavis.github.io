@@ -155,7 +155,7 @@
         // Remaining JavaScript code for fetching movie data and handling form submission...
         // (Keep your existing code for fetching movie data, handling form submission, etc.)
         // Function to fetch and display the selected movie
-        fetch('http://192.168.0.44:3000/random-movie') // Replace with your server's URL
+        fetch('http://localhost:3000/random-movie') // Replace with your server's URL
             .then(response => response.json())
             .then(movieData => {
                 const selectedMovieTitle = document.getElementById('selectedMovieTitle');
@@ -189,7 +189,7 @@
         };
 
         // Send the movie data to the server via a POST request
-        fetch('http://192.168.0.44:3000/movies', {
+        fetch('http://localhost:3000/movies', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -102,10 +102,10 @@
         <h1>Submit Your Movie Suggestion</h1>
         <form id="movieForm">
             <label for="movieTitle">Movie Title:</label>
-            <input type="text" id="movieTitle" placeholder="Enter the movie title" required>
+            <input type="text" id="movieTitle" placeholder="Enter the movie title" required ontouchstart="">
 
             <label for="movieDescription">Description:</label>
-            <textarea id="movieDescription" placeholder="Enter a brief description"></textarea>
+            <textarea id="movieDescription" placeholder="Enter a brief description" ontouchstart=""></textarea>
 
             <button type="submit">Submit</button>
         </form>
@@ -174,7 +174,7 @@
 
         // JavaScript code to handle form submission
         document.getElementById('movieForm').addEventListener('submit', handleSubmit);
-    document.getElementById('movieForm').addEventListener('touchend', handleSubmit);
+        document.getElementById('movieForm').addEventListener('touchend', handleSubmit);
 
     function handleSubmit(event) {
         event.preventDefault();

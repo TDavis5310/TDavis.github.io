@@ -173,11 +173,15 @@
             });
 
         // JavaScript code to handle form submission
-        document.getElementById('movieForm').addEventListener('submit', handleSubmit);
-        document.getElementById('movieForm').addEventListener('touchend', handleSubmit);
+        let formSubmitted = false;
 
-    function handleSubmit(event) {
-        event.preventDefault();
+document.getElementById('movieForm').addEventListener('submit', handleSubmit);
+
+function handleSubmit(event) {
+    event.preventDefault();
+
+    if (!formSubmitted) {
+        formSubmitted = true;
 
         const movieTitle = document.getElementById('movieTitle').value;
         const movieDescription = document.getElementById('movieDescription').value;
@@ -189,7 +193,7 @@
         };
 
         // Send the movie data to the server via a POST request
-        fetch('https://8923-173-217-216-74.ngrok-free.app/movies', {
+        fetch('https://8923-173-217-216-74.ngrok-free.app/movies', {  // Replace with your server's URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -206,8 +210,13 @@
         })
         .catch(error => {
             console.error('Error:', error);
+        })
+        .finally(() => {
+            formSubmitted = false;
         });
     }
+}
+
 </script>
 </body>
 

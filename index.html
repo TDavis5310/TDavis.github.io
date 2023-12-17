@@ -155,9 +155,14 @@
         // Remaining JavaScript code for fetching movie data and handling form submission...
         // (Keep your existing code for fetching movie data, handling form submission, etc.)
         // Function to fetch and display the selected movie
-        fetch('https://8923-173-217-216-74.ngrok-free.app/random-movie') // Replace with your server's URL
-            .then(response => response.json())
-            .then(movieData => {
+        fetch('https://8923-173-217-216-74.ngrok-free.app/random-movie', {
+        method: 'GET',
+        headers: new Headers({
+            'ngrok-skip-browser-warning': '69420',
+            }),
+        })
+        .then(response => response.json())
+        .then(movieData => {
                 const selectedMovieTitle = document.getElementById('selectedMovieTitle');
                 const selectedMovieDescription = document.getElementById('selectedMovieDescription');
 
